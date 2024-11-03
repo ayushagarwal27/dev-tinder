@@ -3,6 +3,7 @@ export const config = {
     baseUrl: "http://localhost:3000",
     auth: {
       login: "/auth/login",
+      logout: "/auth/logout",
     },
     profile: {
       view: "/profile/view",
