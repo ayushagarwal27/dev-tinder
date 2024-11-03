@@ -1,14 +1,17 @@
 import { useSelector } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
 
 const Navbar = () => {
   const user = useSelector((state) => state.user);
-  console.log(user);
+  const navigate = useNavigate();
   return (
     <div className="navbar bg-base-300 ">
       <div className="flex-1">
-        <a className="btn btn-ghost text-xl">👨🏼‍💻 DevTinder</a>
+        <Link className="btn btn-ghost text-xl" to={"/"}>
+          👨🏼‍💻 DevTinder
+        </Link>
       </div>
-      {user && (
+      {user ? (
         <div className="flex-none gap-2">
           <p>Welcome: {user?.firstName}</p>
           <div className="dropdown dropdown-end mx-4">
@@ -32,10 +35,10 @@ const Navbar = () => {
               className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
             >
               <li>
-                <a className="justify-between">
+                <Link className="justify-between" to="/profile">
                   Profile
                   <span className="badge">New</span>
-                </a>
+                </Link>
               </li>
               <li>
                 <a>Settings</a>
@@ -46,6 +49,10 @@ const Navbar = () => {
             </ul>
           </div>
         </div>
+      ) : (
+        <button className="btn btn-primary" onClick={() => navigate("/login")}>
+          Login
+        </button>
       )}
     </div>
   );
