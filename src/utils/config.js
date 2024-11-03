@@ -8,5 +8,8 @@ export const config = {
     profile: {
       view: "/profile/view",
     },
+    user: {
+      feed: "/user/feed",
+    },
   },
 };
