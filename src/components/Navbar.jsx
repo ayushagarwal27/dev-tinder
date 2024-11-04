@@ -53,11 +53,10 @@ const Navbar = () => {
               <li>
                 <Link className="justify-between" to="/profile">
                   Profile
-                  <span className="badge">New</span>
                 </Link>
               </li>
               <li>
-                <a>Settings</a>
+                <Link to={"/connections"}>Connections</Link>
               </li>
               <li>
                 <button onClick={handleLogout} className={""}>

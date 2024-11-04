@@ -15,7 +15,7 @@ const UserCard = ({ user }) => {
         <p className={"text-xl text-center font-bold"}>
           {user?.firstName} {user?.lastName}
         </p>
-        <p className={"text-lg text-center font-semibold"}>
+        <p className={"text-lg text-center font-semibold lowercase"}>
           {user?.age} ({user?.gender})
         </p>
         <p className={"text-sm text-center font-semibold"}>{user?.about}</p>

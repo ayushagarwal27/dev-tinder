@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes, useNavigate } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Navbar from "./components/Navbar.jsx";
 import Home from "./pages/Home/Home.jsx";
 import Login from "./pages/Login/Login.jsx";
@@ -9,6 +9,7 @@ import { config } from "./utils/config.js";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { addUser } from "./store/userSlice.js";
+import Connections from "./pages/Connections/Connections.jsx";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -35,6 +36,8 @@ const App = () => {
         <Route path={"/"} element={<Home />} />
         <Route path={"/login"} element={<Login />} />
         <Route path={"/profile"} element={<Profile />} />
+        <Route path={"/connections"} element={<Connections />} />
+        <Route path={"/requests"} element={<Profile />} />
       </Routes>
       <Footer />
     </BrowserRouter>

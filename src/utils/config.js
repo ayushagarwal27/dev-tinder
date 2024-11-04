@@ -11,6 +11,7 @@ export const config = {
     },
     user: {
       feed: "/user/feed",
+      connections: "/user/connections",
     },
   },
 };
