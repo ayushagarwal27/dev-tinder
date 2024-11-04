@@ -10,7 +10,6 @@ const Feed = () => {
   const dispatch = useDispatch();
 
   async function getFeed() {
-    if (feed) return;
     const res = await axios.get(config.urls.baseUrl + config.urls.user.feed, {
       withCredentials: true,
     });

@@ -14,5 +14,8 @@ export const config = {
       connections: "/user/connections",
       requestReceived: "/user/requests/received",
     },
+    request: {
+      review: "/request/review",
+    },
   },
 };

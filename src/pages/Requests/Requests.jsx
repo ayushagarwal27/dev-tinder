@@ -1,10 +1,10 @@
 import axios from "axios";
 import { config } from "../../utils/config.js";
 import { useEffect, useState } from "react";
-import UserCard from "../../components/UserCard.jsx";
 
 const Requests = () => {
   const [requests, setRequests] = useState(null);
+
   async function getReceivedRequest() {
     try {
       const res = await axios.get(
@@ -17,16 +17,31 @@ const Requests = () => {
     }
   }
 
+  const reviewRequest = async (status, id) => {
+    try {
+      await axios.post(
+        config.urls.baseUrl + config.urls.request.review + `/${status}/${id}`,
+        {},
+        { withCredentials: true },
+      );
+      const nextRequests = [...requests].filter((rq) => rq.connectionId !== id);
+      setRequests(nextRequests);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   useEffect(() => {
     getReceivedRequest();
   }, []);
+
   return (
     <div className={"flex flex-col items-center mt-10 w-full"}>
       <h1 className={"text-2xl font-semibold"}>
         {requests && requests.length === 0 && "No"} Requests
       </h1>
       <div className={"flex flex-wrap gap-4 my-5"}>
-        {requests?.map((connection, idx) => (
+        {requests?.map((request, idx) => (
           <div
             className="card bg-purple-100 text-center text-base-300 shadow-xl max-w-[350px]"
             key={idx}
@@ -40,15 +55,29 @@ const Requests = () => {
             </figure>
             <div className="card-body">
               <p className={"text-nowrap font-semibold"}>
-                {connection.firstName} {connection.lastName}
+                {request.user.firstName} {request.user.lastName}
               </p>{" "}
               <p className={"text-nowrap"}>
-                {connection.age} ({connection.gender})
+                {request.user.age} ({request.user.gender})
               </p>
-              <p className={""}>{connection.about}</p>
+              <p className={""}>{request.user.about}</p>
               <div className={"flex gap-4 mx-auto"}>
-                <button className={"btn btn-warning"}>Reject</button>
-                <button className={"btn btn-success"}>Accept</button>
+                <button
+                  className={"btn btn-warning"}
+                  onClick={() =>
+                    reviewRequest("rejected", request.connectionId)
+                  }
+                >
+                  Reject
+                </button>
+                <button
+                  className={"btn btn-success"}
+                  onClick={() =>
+                    reviewRequest("accepted", request.connectionId)
+                  }
+                >
+                  Accept
+                </button>
               </div>
             </div>
           </div>
