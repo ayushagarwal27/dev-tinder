@@ -10,6 +10,7 @@ import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { addUser } from "./store/userSlice.js";
 import Connections from "./pages/Connections/Connections.jsx";
+import Requests from "./pages/Requests/Requests.jsx";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -37,7 +38,7 @@ const App = () => {
         <Route path={"/login"} element={<Login />} />
         <Route path={"/profile"} element={<Profile />} />
         <Route path={"/connections"} element={<Connections />} />
-        <Route path={"/requests"} element={<Profile />} />
+        <Route path={"/requests"} element={<Requests />} />
       </Routes>
       <Footer />
     </BrowserRouter>
