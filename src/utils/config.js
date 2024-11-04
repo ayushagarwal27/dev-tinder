@@ -7,6 +7,7 @@ export const config = {
     },
     profile: {
       view: "/profile/view",
+      edit: "/profile/edit",
     },
     user: {
       feed: "/user/feed",
