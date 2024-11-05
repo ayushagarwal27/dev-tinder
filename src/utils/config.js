@@ -15,6 +15,7 @@ export const config = {
       requestReceived: "/user/requests/received",
     },
     request: {
+      send: "/request/send",
       review: "/request/review",
     },
   },

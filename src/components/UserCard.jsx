@@ -1,4 +1,30 @@
+import axios from "axios";
+import { config } from "../utils/config.js";
+import { useDispatch, useSelector } from "react-redux";
+import { addFeed } from "../store/feedSlice.js";
+
 const UserCard = ({ user }) => {
+  const feed = useSelector((state) => state.feed);
+  const loggedInUser = useSelector((state) => state.user);
+  const dispatch = useDispatch();
+
+  async function handleSendRequest(status, personId) {
+    try {
+      await axios.post(
+        config.urls.baseUrl +
+          config.urls.request.send +
+          `/${status}/${personId}`,
+        {},
+        { withCredentials: true },
+      );
+      const nextFeed = [...feed].filter((person) => person?._id !== personId);
+      dispatch(addFeed(nextFeed));
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  console.log(feed);
   return (
     <div className="card bg-white text-base-300 w-72 shadow-xl">
       <figure>
@@ -20,8 +46,20 @@ const UserCard = ({ user }) => {
         </p>
         <p className={"text-sm text-center font-semibold"}>{user?.about}</p>
         <div className="card-actions justify-center">
-          <button className="btn btn-warning">Ignore</button>
-          <button className="btn btn-primary">Connect</button>
+          <button
+            className="btn btn-warning"
+            disabled={loggedInUser?._id === user?._id || !user?._id}
+            onClick={() => handleSendRequest("ignored", user._id)}
+          >
+            Ignore
+          </button>
+          <button
+            className="btn btn-primary"
+            disabled={loggedInUser?._id === user?._id || !user?._id}
+            onClick={() => handleSendRequest("interested", user._id)}
+          >
+            Connect
+          </button>
         </div>
       </div>
     </div>

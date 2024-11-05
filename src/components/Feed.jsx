@@ -21,6 +21,9 @@ const Feed = () => {
 
   return (
     <div className={"flex gap-4 mt-10 justify-center"}>
+      {feed?.length === 0 && (
+        <p className={"text-2xl text-purple-300 font-serif"}>No New Users</p>
+      )}
       {feed && feed.map((user, idx) => <UserCard key={idx} user={user} />)}
     </div>
   );
