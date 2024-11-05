@@ -71,7 +71,7 @@ const Navbar = () => {
         </div>
       ) : (
         <button className="btn btn-primary" onClick={() => navigate("/login")}>
-          Login
+          Sign Up / Sign In
         </button>
       )}
     </div>
