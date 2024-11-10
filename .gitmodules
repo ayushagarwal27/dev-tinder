@@ -1,0 +1,3 @@
+[submodule "dev-tinder-backend"]
+	path = dev-tinder-backend
+	url = https://github.com/ayushagarwal27/dev-tinder-backend
